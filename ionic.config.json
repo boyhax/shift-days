@@ -1,0 +1,7 @@
+{
+  "name": "shiftDays",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
