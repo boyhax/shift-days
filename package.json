@@ -7,9 +7,7 @@
     "@capacitor/app": "4.0.1",
     "@capacitor/core": "4.1.0",
     "@capacitor/haptics": "4.0.1",
-    "@capacitor/keyboard": "4.0.1",
     "@capacitor/preferences": "^4.0.1",
-    "@capacitor/status-bar": "4.0.1",
     "@ionic/react": "^6.0.0",
     "@ionic/react-router": "^6.0.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -70,6 +68,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "4.1.0",
+    "@ionic/cli": "6.20.1",
     "@ionic/lab": "3.2.13",
     "cordova-res": "0.15.4"
   },

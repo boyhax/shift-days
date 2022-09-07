@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.boyhax.shiftDays;
 
 import com.getcapacitor.BridgeActivity;
 
