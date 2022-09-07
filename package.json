@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@capacitor/android": "4.1.0",
-    "@capacitor/app": "4.0.1",
     "@capacitor/core": "4.1.0",
     "@capacitor/preferences": "^4.0.1",
     "@ionic/react": "^6.0.0",
