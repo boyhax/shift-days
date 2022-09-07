@@ -22,6 +22,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Callender from './pages/Callender';
 
 setupIonicReact();
 
@@ -30,14 +31,15 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonSplitPane contentId="main">
-          <Menu />
+          {/* <Menu /> */}
           <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/page/Inbox" />
-            </Route>
+            {/* <Route path="/" exact={true}>
+              <Redirect to="/callender" />
+            </Route> */}
             <Route path="/page/:name" exact={true}>
-              <Page />
+              {/* <Page /> */}
             </Route>
+            <Route path="/" component={Callender} exact={true}></Route>
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
