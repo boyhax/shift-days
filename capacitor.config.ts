@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.boyhax.shiftDays',
   appName: 'shiftDays',
   webDir: 'build',
   bundledWebRuntime: false

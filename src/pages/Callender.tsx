@@ -102,9 +102,8 @@ const Callender: React.FC = () => {
         locale='ar-OM'
         multiple={true}
         value={workDays}
-        onIonChange={(e)=>{
-          // setWorkDays(e.detail.value)
-        }}
+        max={"2100"}
+        min={"2015"}
         ></IonDatetime>
       </IonContent>
     </IonPage>
@@ -118,7 +117,7 @@ function getShiftDays(FirstDay:string){
   var newDay = new Date(FirstDay)
   days.push(date.format(newDay,"YYYY-MM-DD"))
 
-    for(var i=1;i<=12;i++){
+    for(var i=1;i<=24;i++){
       for(var n=0;n<=13;n++){
         var Day = date.addDays(newDay,n)
         // console.log('Day after :>> ', n," :",Day);

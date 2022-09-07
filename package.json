@@ -47,7 +47,8 @@
     "start": "ionic serve",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:android": "ionic cap build android"
   },
   "eslintConfig": {
     "extends": [
@@ -69,7 +70,8 @@
   },
   "devDependencies": {
     "@capacitor/cli": "4.1.0",
-    "@ionic/lab": "3.2.13"
+    "@ionic/lab": "3.2.13",
+    "cordova-res": "0.15.4"
   },
   "description": "An Ionic project"
 }
