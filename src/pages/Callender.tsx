@@ -9,7 +9,7 @@ date.locale("ar-OM")
 
 const Callender: React.FC = () => {
   const [FirstDay,setFirstDay] = useState<any>(date.format(new Date(),"YYYY-MM-DD"))
-  const [workDays,setWorkDays] = useState<any>(['2022-09-13'])
+  const [workDays,setWorkDays] = useState<any>([date.format(new Date(),"YYYY-MM-DD")])
   const modal = useRef<HTMLIonModalElement>(null);
   const input = useRef<HTMLIonInputElement>(null);
   
@@ -88,6 +88,7 @@ const Callender: React.FC = () => {
           </IonHeader>
           <IonContent className="ion-padding">
           <IonDatetime
+          value={FirstDay}
             presentation='date'
             size='cover'
             locale='ar-OM'
