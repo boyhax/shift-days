@@ -1,58 +1,34 @@
-import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonLabel, IonModal, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { useState,useEffect, useRef } from 'react';
-import date from "date-and-time"
-import './Page.css';
-import { OverlayEventDetail } from '@ionic/react/dist/types/components/react-component-lib/interfaces';
-import { Preferences } from '@capacitor/preferences';
-date.locale("ar-OM")
-
+import {
+  IonButtons,
+  IonContent,
+  IonDatetime,
+  IonFab,
+  IonFabButton,
+  IonHeader,
+  IonIcon,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  isPlatform,
+} from "@ionic/react";
+import { logoAndroid, settingsSharp } from "ionicons/icons";
+import { Calendar, DateObject } from "react-multi-date-picker";
+import { state } from "../state";
+import "./Page.css";
 
 const Callender: React.FC = () => {
-  const [FirstDay,setFirstDay] = useState<any>(date.format(new Date(),"YYYY-MM-DD"))
-  const [workDays,setWorkDays] = useState<any>([date.format(new Date(),"YYYY-MM-DD")])
-  const modal = useRef<HTMLIonModalElement>(null);
-  const input = useRef<HTMLIonInputElement>(null);
-  
-  const newfirstDay=(v:any)=>{
-  console.log('v  from date time pikcker :>> ', v);
-      var day = date.format(new Date(v),"YYYY-MM-DD")
-      console.log('day in new first day :>> ', day);
-      setFirstDay(v)
-      Preferences.set({
-        key:"firstDay",
-        value:day
-      })
-      setWorkDays(getShiftDays(day))
+  const { workdays } = state();
 
+  const onsettings = () => {
+    state.setState({ settingOpen: !state.getState().settingOpen });
+  };
 
-  }
- useEffect(()=>{
-    Preferences.get({
-      key:"firstDay"
-    }).then((value)=>{
-      setFirstDay(value.value)
-      setWorkDays(getShiftDays(value.value!))
-      console.log('value of preference :>> ', value.value);
-    })
-      
-  },[])
-  function confirm() {
-    modal.current?.dismiss(input.current?.value, 'confirm');
-  }
-
-  function onWillDismiss(ev: CustomEvent<OverlayEventDetail>) {
-    if (ev.detail.role === 'confirm') {
-      // setMessage(`Hello, ${ev.detail.data}!`);
-    }
-  }
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
-            {/* <IonMenuButton /> */}
-          </IonButtons>
-          <IonTitle>التقويم</IonTitle>
+          <IonButtons slot="start">{/* <IonMenuButton /> */}</IonButtons>
+          <IonTitle>Callender</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -62,72 +38,29 @@ const Callender: React.FC = () => {
             <IonTitle size="large">ايام الشفت</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonButton id="open-modal" expand="block">
-         <IonLabel >
-         حدد اول يوم في الشفت  
-          </IonLabel>        
-        </IonButton>
-      
-        <IonModal 
-        showBackdrop={true}
-        ref={modal} 
-        trigger="open-modal" 
-        onWillDismiss={(ev) => onWillDismiss(ev)}>
-          <IonHeader>
-            <IonToolbar>
-              <IonButtons slot="start">
-                <IonButton onClick={() => modal.current?.dismiss()}>Cancel</IonButton>
-              </IonButtons>
-              <IonTitle>Welcome</IonTitle>
-              <IonButtons slot="end">
-                <IonButton strong={true} onClick={() => confirm()}>
-                  Confirm
-                </IonButton>
-              </IonButtons>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent className="ion-padding">
-          <IonDatetime
-          value={FirstDay}
-            presentation='date'
-            size='cover'
-            locale='ar-OM'
-            onIonChange={(e)=>newfirstDay(e.detail.value)}
-        ></IonDatetime>
-          </IonContent>
-        </IonModal>
-        <IonDatetime
-        
-        presentation='date'
-        size='cover'
-        locale='ar-OM'
-        multiple={true}
-        value={workDays}
-        max={"2100"}
-        min={"2015"}
-        ></IonDatetime>
+        <Calendar
+          multiple
+          maxDate={new DateObject().add(1,'y').format()}
+          minDate={new DateObject().subtract(1,'y').format()}
+          value={workdays.map((d)=>new DateObject(d))}
+          numberOfMonths={2}
+          fullYear
+          readOnly
+        />
+          
       </IonContent>
+      <IonFab horizontal={"start"} vertical="bottom">
+        {isPlatform("mobileweb") && (
+          <IonFabButton href={process.env.REACR_APP_ANDROID_LINK}>
+            <IonIcon icon={logoAndroid}></IonIcon>
+          </IonFabButton>
+        )}
+        <IonFabButton onClick={onsettings}>
+          <IonIcon icon={settingsSharp}></IonIcon>
+        </IonFabButton>
+      </IonFab>
     </IonPage>
   );
 };
 
 export default Callender;
-
-function getShiftDays(FirstDay:string){
-  var days:string[] = []
-  var newDay = new Date(FirstDay)
-  days.push(date.format(newDay,"YYYY-MM-DD"))
-
-    for(var i=1;i<=24;i++){
-      for(var n=0;n<=13;n++){
-        var Day = date.addDays(newDay,n)
-        // console.log('Day after :>> ', n," :",Day);
-        days.push(date.format(Day,"YYYY-MM-DD"))
-      }
-      // console.log('newDay before :>> ', newDay);
-        newDay = date.addDays(newDay,28)
-        // console.log('newDay after :>> ', newDay);
-    }
-    // console.log('days :>> ', days);
-  return days
-}
