@@ -15,6 +15,8 @@ import { logoAndroid, settingsSharp } from "ionicons/icons";
 import { Calendar, DateObject } from "react-multi-date-picker";
 import { state } from "../state";
 import "./Page.css";
+import "react-multi-date-picker/styles/layouts/mobile.css";
+import { Link } from "react-router-dom";
 
 const Callender: React.FC = () => {
   const { workdays } = state();
@@ -22,7 +24,6 @@ const Callender: React.FC = () => {
   const onsettings = () => {
     state.setState({ settingOpen: !state.getState().settingOpen });
   };
-
   return (
     <IonPage>
       <IonHeader>
@@ -39,20 +40,22 @@ const Callender: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <Calendar
+          value={workdays.map((d) => new Date(d))}
           multiple
-          maxDate={new DateObject().add(1,'y').format()}
-          minDate={new DateObject().subtract(1,'y').format()}
-          value={workdays.map((d)=>new DateObject(d))}
-          numberOfMonths={2}
-          fullYear
+          fullYear={isPlatform("desktop")}
+          className={" scale-50"}
           readOnly
         />
-          
       </IonContent>
       <IonFab horizontal={"start"} vertical="bottom">
         {isPlatform("mobileweb") && (
-          <IonFabButton href={process.env.REACR_APP_ANDROID_LINK}>
-            <IonIcon icon={logoAndroid}></IonIcon>
+          <IonFabButton>
+            <Link
+              to={{ pathname: process.env.REACT_APP_ANDROID_LINK }}
+              target="_blank"
+            >
+              <IonIcon icon={logoAndroid}></IonIcon>
+            </Link>
           </IonFabButton>
         )}
         <IonFabButton onClick={onsettings}>
