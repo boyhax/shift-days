@@ -6,17 +6,14 @@ settings:
 
 dependencies:
   '@capacitor/android':
-    specifier: 4.1.0
-    version: 4.1.0(@capacitor/core@4.6.0)
+    specifier: ^5.6.0
+    version: 5.6.0(@capacitor/core@5.6.0)
   '@capacitor/assets':
     specifier: ^3.0.4
     version: 3.0.4(@types/node@12.20.55)(typescript@4.9.3)
   '@capacitor/core':
-    specifier: 4.6.0
-    version: 4.6.0
-  '@capacitor/preferences':
-    specifier: 4.0.2
-    version: 4.0.2(@capacitor/core@4.6.0)
+    specifier: ^5.6.0
+    version: 5.6.0
   '@ionic/react':
     specifier: 7.6.4
     version: 7.6.4(react-dom@18.2.0)(react@18.2.0)
@@ -59,6 +56,9 @@ dependencies:
   ionicons:
     specifier: 6.0.4
     version: 6.0.4
+  rc-year-calendar:
+    specifier: ^1.0.2
+    version: 1.0.2(prop-types@15.8.1)(react@18.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -122,7 +122,7 @@ dependencies:
 
 devDependencies:
   '@capacitor/cli':
-    specifier: 5.6.0
+    specifier: ^5.6.0
     version: 5.6.0
   '@ionic/cli':
     specifier: 7.2.0
@@ -1616,12 +1616,12 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@capacitor/android@4.1.0(@capacitor/core@4.6.0):
-    resolution: {integrity: sha512-aYHvpYVlS6WC+bG9jJfwqgHMxTw3e8f3taNnl/y9qCjglmMmtFcZWFAVLlOleVK4Q7olSirqjx37f0ppvxRTLg==}
+  /@capacitor/android@5.6.0(@capacitor/core@5.6.0):
+    resolution: {integrity: sha512-6O7xV6K6c8WvQzKxOe7fnhRyoVpS3TNDXy1FyfhvOvclBvu+1JddSdFvW4e4dSL60s2c00sCzNRgYhm+cn0/dQ==}
     peerDependencies:
-      '@capacitor/core': ^4.0.0
+      '@capacitor/core': ^5.6.0
     dependencies:
-      '@capacitor/core': 4.6.0
+      '@capacitor/core': 5.6.0
     dev: false
 
   /@capacitor/assets@3.0.4(@types/node@12.20.55)(typescript@4.9.3):
@@ -1675,18 +1675,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@capacitor/core@4.6.0:
-    resolution: {integrity: sha512-P8PfJB5rFSBU2wDZ5wVHTVFZxKweFrxz554+Fl/ymhhAxlxFJuF5nFIZyQgVq+A1yp/nCLzWOyPMC5OPD/um0g==}
+  /@capacitor/core@5.6.0:
+    resolution: {integrity: sha512-xJhCOUGPHw0QYDA3YH+CmL6qiV9DH4Ij3yPxSenymjrtLuXI197u9ddCZwGEwgVIkh9kGZBBKzsNkn89SZ2gdQ==}
     dependencies:
       tslib: 2.6.2
-    dev: false
-
-  /@capacitor/preferences@4.0.2(@capacitor/core@4.6.0):
-    resolution: {integrity: sha512-HgcRkMdVHSIV3TeQLZFmCaCeMWQ25wLyZZ7dA2f8Rw81Q1Nroxsi7HxTEGNqrWKSN9PNKBJD8vChr6eB2GNtZg==}
-    peerDependencies:
-      '@capacitor/core': ^4.0.0
-    dependencies:
-      '@capacitor/core': 4.6.0
     dev: false
 
   /@cspotcode/source-map-support@0.8.1:
@@ -4394,7 +4386,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001578
-      electron-to-chromium: 1.4.634
+      electron-to-chromium: 1.4.635
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: true
@@ -5689,8 +5681,8 @@ packages:
       jake: 10.8.7
     dev: true
 
-  /electron-to-chromium@1.4.634:
-    resolution: {integrity: sha512-gQNahJfF5AE4MZo+pMSwmnwkzVZ+F4ZGGj4Z/MMddOXVQM0y9OHy6ts3W9SDzAJaiZM3p6eixn5ABCQ+AfXzcQ==}
+  /electron-to-chromium@1.4.635:
+    resolution: {integrity: sha512-iu/2D0zolKU3iDGXXxdOzNf72Jnokn+K1IN6Kk4iV6l1Tr2g/qy+mvmtfAiBwZe5S3aB5r92vp+zSZ69scYRrg==}
     dev: true
 
   /elementtree@0.1.7:
@@ -8299,6 +8291,10 @@ packages:
       argparse: 2.0.1
     dev: true
 
+  /js-year-calendar@1.0.2:
+    resolution: {integrity: sha512-ayHH/vE7xuXgGCprhQ23REbp3Rb2fy1rXO8jA26Wmuw4vYJ/TTIgFxFuNAlNPL8WR4tNXfnG41nlH3p+hjFesg==}
+    dev: false
+
   /jsdom@16.7.0:
     resolution: {integrity: sha512-u9Smc2G1USStM+s/x1ru5Sxrl6mPYCbByG1U/hUmqaVsm4tbNyS7CicOSRyuGQYZhTu0h84qkZZQ/I+dzizSVw==}
     engines: {node: '>=10'}
@@ -10588,6 +10584,17 @@ packages:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
     dev: true
+
+  /rc-year-calendar@1.0.2(prop-types@15.8.1)(react@18.2.0):
+    resolution: {integrity: sha512-TdEHZ4hs3WEuEAAmX/HEWlK7EZwhACkpuJKdkxL360igekuQDguyXTC9RuDFdk6lv4CAT7L4d4D6PTP7zUMBlQ==}
+    peerDependencies:
+      prop-types: ^15.7.2
+      react: ^16.8.4
+    dependencies:
+      js-year-calendar: 1.0.2
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
 
   /rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}

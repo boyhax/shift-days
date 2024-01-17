@@ -12,9 +12,10 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Calendar, DateObject } from "react-multi-date-picker";
+import {  Calendar, DateObject } from "react-multi-date-picker";
 import { state } from "../state";
 import "./Page.css";
+
 
 const Settings: React.FC = () => {
   const { settingOpen, offdayscount, workdayscount, shiftstart } = state();
@@ -52,6 +53,7 @@ const Settings: React.FC = () => {
           <IonItem>
             <IonLabel>Work days</IonLabel>
             <IonInput
+            
               value={workdayscount}
               onIonChange={(e) =>
                 state.setState({ workdayscount: e.detail.value as any })
@@ -64,6 +66,7 @@ const Settings: React.FC = () => {
           <IonItem>
             <IonLabel>off days</IonLabel>
             <IonInput
+            
               value={offdayscount}
               onIonChange={(e) =>
                 state.setState({ offdayscount: e.detail.value as any })
@@ -75,7 +78,7 @@ const Settings: React.FC = () => {
           </IonItem>
         </IonList>
         <IonListHeader> pick first day of next shift</IonListHeader>
-
+        
         <Calendar
           className={"w-full"}
           onChange={(v) => state.setState({ shiftstart: v.toString() })}

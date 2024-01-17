@@ -1,22 +1,20 @@
 import {
-  IonButtons,
-  IonContent,
-  IonDatetime,
-  IonFab,
+  IonButtons, IonFab,
   IonFabButton,
   IonHeader,
   IonIcon,
   IonPage,
   IonTitle,
   IonToolbar,
-  isPlatform,
+  isPlatform
 } from "@ionic/react";
 import { logoAndroid, settingsSharp } from "ionicons/icons";
-import { Calendar, DateObject } from "react-multi-date-picker";
-import { state } from "../state";
-import "./Page.css";
+import Calendar from "rc-year-calendar";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import { Link } from "react-router-dom";
+import { state } from "../state";
+import "./Page.css";
+// import "rc-year-calendar/dist/rc-year-calendar.css";
 
 const Callender: React.FC = () => {
   const { workdays } = state();
@@ -33,30 +31,25 @@ const Callender: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">ايام الشفت</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <Calendar
-          value={workdays.map((d) => new Date(d))}
-          multiple
-          fullYear={isPlatform("desktop")}
-          className={" scale-50"}
-          readOnly
-        />
-      </IonContent>
+    
+      <Calendar
+        dataSource={workdays.map((d) => {
+          return { startDate: new Date(d), endDate: new Date(d),color:'blue' };
+        })}
+        
+        
+      />
+      
       <IonFab horizontal={"start"} vertical="bottom">
-        {isPlatform("mobileweb") && (
-          <IonFabButton>
-            <Link
-              to={{ pathname: process.env.REACT_APP_ANDROID_LINK }}
-              target="_blank"
-            >
+        {!isPlatform("hybrid") && (
+          <Link
+            to={{ pathname: process.env.REACT_APP_ANDROID_LINK }}
+            target="_blank"
+          >
+            <IonFabButton>
               <IonIcon icon={logoAndroid}></IonIcon>
-            </Link>
-          </IonFabButton>
+            </IonFabButton>
+          </Link>
         )}
         <IonFabButton onClick={onsettings}>
           <IonIcon icon={settingsSharp}></IonIcon>
